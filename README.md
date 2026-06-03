@@ -24,7 +24,7 @@ mvnw.cmd spring-boot:run
 ## Running the Mock Upstream
 
 ```bash
-node mock-upstram.js
+node mock-upstream.js
 ```
 
 ## Example Requests
