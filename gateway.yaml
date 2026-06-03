@@ -3,7 +3,7 @@ gateway:
 
 routes:
   - path: "/api/users"
-    methods: ["GET", "POST"]
+    methods: ["GET"]
     stripPrefix: false
     upstream:
       url: "http://localhost:3001"
