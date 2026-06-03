@@ -1,4 +1,9 @@
 gateway:
   port: 8080
 
-routes: []
+routes:
+  - path: "/api/users"
+    methods: ["GET", "POST"]
+    stripPrefix: false
+    upstream:
+      url: "http://localhost:3001"
