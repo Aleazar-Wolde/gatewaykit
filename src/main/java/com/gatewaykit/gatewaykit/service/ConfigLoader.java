@@ -9,6 +9,10 @@ import org.yaml.snakeyaml.LoaderOptions;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+/**
+ * Loads gateway configuration from gateway.yaml
+ * when the application starts.
+ */
 @Service
 public class ConfigLoader {
 

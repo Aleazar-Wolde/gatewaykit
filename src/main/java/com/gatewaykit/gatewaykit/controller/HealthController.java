@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+/**
+ * Simple health endpoint used to verify
+ * that the gateway is running.
+ */
 @RestController
 public class HealthController {
 

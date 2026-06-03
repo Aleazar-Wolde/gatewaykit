@@ -17,6 +17,15 @@ Implemented:
 
 I intentionally prioritized a clean implementation of the core gateway functionality before implementing advanced features such as rate limiting, retries, circuit breakers, load balancing, and request/response transformations.
 
+## Production Considerations
+
+Current behavior:
+- If a route is not configured, the gateway returns 404.
+- If a method is not allowed, the gateway returns 405.
+- If the upstream service is unavailable, the request may fail because advanced resilience logic was intentionally deferred.
+
+With more time, I would add clearer upstream error handling, configurable timeouts, retry policies, circuit breakers, and rate limiting with thread-safe counters.
+
 ## Architecture
 
 The project separates responsibilities into focused components:

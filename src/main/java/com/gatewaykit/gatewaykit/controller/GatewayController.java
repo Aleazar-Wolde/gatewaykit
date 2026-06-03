@@ -14,6 +14,14 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Collections;
 
+/**
+ * Main entry point for gateway traffic.
+ *
+ * Responsibilities:
+ * - Route matching
+ * - Method validation
+ * - Proxying requests to upstream services
+ */
 @RestController
 public class GatewayController {
 
@@ -29,18 +37,22 @@ public class GatewayController {
         String path = request.getRequestURI();
         String method = request.getMethod();
 
+        // Find the route configuration for the incoming request.
         RouteConfig route = routeMatcher.findRoute(path);
 
+        // Return 404 when no configured route matches.
         if (route == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("{\"error\":\"route_not_found\"}");
         }
 
+        // Return 405 when the HTTP method is not allowed.
         if (route.getMethods() != null && !route.getMethods().contains(method)) {
             return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED)
                     .body("{\"error\":\"method_not_allowed\"}");
         }
 
+        // Forward the request to the configured upstream service.
         String upstreamUrl = route.getUpstream().getUrl() + path;
 
         HttpRequest upstreamRequest = HttpRequest.newBuilder()

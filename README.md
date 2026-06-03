@@ -70,3 +70,4 @@ POST http://localhost:8080/api/users
 * Circuit breaker support
 * Load balancing
 * Integration tests
+- Better upstream failure handling with 502/503 responses
